@@ -18,9 +18,21 @@ double mySqrt(double x);
     Returns:
         double: cosine of x
 ***/
+int giaiThua(int n){
+    if (n == 0 || n == 1) return 1;
+    return n * giaiThua(n-1);
+}
+
 double myCos(double x) 
 {
-    return 0.0;
+    double sign = -1;
+    double result = 1;
+    for (int i = 2; i <= 30; i += 2)
+    {
+        result += sign * (1 / giaiThua(i)) * pow(x, i);
+        sign *= -1;
+    }
+    return result;
 }
 
 /***
@@ -31,7 +43,14 @@ double myCos(double x)
 ***/
 double mySin(double x)
 {
-    return 0.0;
+    double sign = -1;
+    double result = x;
+    for (int i = 3; i <= 31; i += 2)
+    {
+        result += sign * (1 / giaiThua(i)) * pow(x, i);
+        sign *= -1;
+    }
+    return result;
 }
 
 
@@ -48,5 +67,5 @@ double mySqrt(double x) {
     }
 
     
-    return 0;
+    return sqrt(x);
 }
